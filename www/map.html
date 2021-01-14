@@ -1,0 +1,34 @@
+<ons-page id="map.html">
+
+  <ons-toolbar>
+    <div class="center">避難マップ</div>
+  </ons-toolbar>
+
+<script>
+    ons.ready(function() {
+      var content = document.querySelector(".page__content");
+      var iframe = document.querySelector("iframe");
+      iframe.style.width = content.clientWidth.toString() + "px";
+      iframe.style.height = content.clientHeight.toString() + "px";
+      if (ons.platform.isAndroid()) {
+        iframe.setAttribute("scrolling", "yes");
+      } else {
+        iframe.setAttribute("scrolling", "no");
+      }
+      // パラメータ指定
+      var p = "?output=embed"
+            + "&ll=" + param.center.lat.toString() + "," + param.center.lng.toString()
+            + "&z=" + param.zoom.toString()
+            + "&hl=" + param.lang;
+      iframe.setAttribute("src", url + p);
+    });
+ 
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+  </script>
+
+  <iframe src="https://www.google.com/maps/d/embed?mid=1TqUl8IC2bCGzxipdSDPaGEru9fZDnBpk&hl=ja"></iframe>
+
+</ons-page>
